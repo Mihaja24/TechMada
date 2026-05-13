@@ -1,0 +1,135 @@
+:root{
+  --ink:#1c2b1e;
+  --forest:#2d5a3d;
+  --forest2:#3d7a52;
+  --leaf:#5fa876;
+  --mint:#d4ede0;
+  --cream:#f8f6f1;
+  --white:#ffffff;
+  --border:#dde8e1;
+  --muted:#7a8f80;
+  --danger:#c0392b;
+  --success:#1e6b3f;
+}
+
+.page-header{
+  margin-bottom:2rem;
+}
+
+.page-header h1{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  margin:0 0 .5rem;
+  color:var(--ink);
+}
+
+.page-subtitle{
+  color:var(--muted);
+  font-size:1rem;
+  margin:0;
+}
+
+.empty-state{
+  text-align:center;
+  padding:4rem 2rem;
+  background:var(--white);
+  border-radius:16px;
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+
+.soldes-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1.5rem;
+}
+
+.solde-card{
+  background:var(--white);
+  border-radius:16px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  transition:box-shadow .15s,transform .15s;
+}
+
+.solde-card:hover{
+  box-shadow:0 8px 24px rgba(28,43,30,.1);
+  transform:translateY(-2px);
+}
+
+.solde-header{
+  background:var(--forest);
+  color:var(--white);
+  padding:1.25rem 1.5rem;
+}
+
+.solde-header h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;
+  margin:0;
+}
+
+.solde-body{
+  padding:1.5rem;
+}
+
+.solde-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:.75rem 0;
+  border-bottom:1px solid var(--border);
+}
+
+.solde-row:last-child{
+  border-bottom:none;
+}
+
+.solde-row-total{
+  padding-top:1rem;
+  margin-top:.5rem;
+  border-top:2px solid var(--forest);
+  border-bottom:none;
+}
+
+.solde-label{
+  color:var(--muted);
+  font-size:.9rem;
+  font-weight:500;
+}
+
+.solde-value{
+  font-size:1.25rem;
+  font-weight:700;
+  color:var(--ink);
+}
+
+.solde-attribues{
+  color:var(--forest);
+}
+
+.solde-pris{
+  color:var(--muted);
+}
+
+.solde-restant.positive{
+  color:var(--success);
+}
+
+.solde-restant.negative{
+  color:var(--danger);
+}
+
+.solde-restant.zero{
+  color:var(--muted);
+}
+
+@media(max-width:768px){
+  .soldes-grid{
+    grid-template-columns:1fr;
+  }
+  
+  .page-header h1{
+    font-size:1.5rem;
+  }
+}
