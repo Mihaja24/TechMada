@@ -8,3 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Auth::login');
 $routes->match(['get', 'post'], 'login', 'Auth::login');
 $routes->get('logout', 'Auth::logout');
+
+$routes->group('rh', ['filter' => 'auth:rh|admin'], static function ($routes) {
+	$routes->get('/', 'Rh::index');
+	$routes->get('demandes', 'Rh::demandes');
+});
+
+$routes->get('liste-rh', 'Rh::demandes', ['filter' => 'auth:rh|admin']);

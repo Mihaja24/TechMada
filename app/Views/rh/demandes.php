@@ -1,0 +1,86 @@
+<?= $this->extend('layouts/app') ?>
+
+<?= $this->section('content') ?>
+
+<section class="rh-page">
+  <div class="page-head">
+    <div>
+      <p class="eyebrow">Espace RH</p>
+      <h1>Demandes en attente</h1>
+      <p class="page-subtitle">Vue de toutes les demandes en attente de validation, triées par date de début.</p>
+    </div>
+    <div class="page-kpi">
+      <span class="kpi-value"><?= esc($totalDemandes ?? 0) ?></span>
+      <span class="kpi-label">demande(s) à traiter</span>
+    </div>
+  </div>
+
+  <?php if (! empty($demandes)): ?>
+    <div class="table-card">
+      <div class="table-meta">
+        <span class="meta-chip meta-chip-soft"><i class="bi bi-funnel"></i> Statut: en attente</span>
+        <span class="meta-chip"><i class="bi bi-sort-down"></i> Tri: date de début croissante</span>
+      </div>
+
+      <div class="responsive-table">
+        <table class="rh-table">
+          <thead>
+            <tr>
+              <th>Employé</th>
+              <th>Département</th>
+              <th>Type</th>
+              <th>Période</th>
+              <th>Jours</th>
+              <th>Motif</th>
+              <th>Demandée le</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($demandes as $demande): ?>
+              <tr>
+                <td>
+                  <div class="employee-cell">
+                    <div class="employee-avatar">
+                      <?= esc(mb_strtoupper(mb_substr((string)($demande['employe_prenom'] ?? 'U'), 0, 1) . mb_substr((string)($demande['employe_nom'] ?? 'R'), 0, 1))) ?>
+                    </div>
+                    <div>
+                      <strong><?= esc(trim(($demande['employe_prenom'] ?? '') . ' ' . ($demande['employe_nom'] ?? ''))) ?></strong>
+                      <span><?= esc($demande['employe_email'] ?? '') ?></span>
+                    </div>
+                  </div>
+                </td>
+                <td><?= esc($demande['departement_nom'] ?? 'Non défini') ?></td>
+                <td><?= esc($demande['type_conge_libelle'] ?? 'Congé') ?></td>
+                <td>
+                  <div class="period-cell">
+                    <strong><?= esc(date('d/m/Y', strtotime((string) $demande['date_debut']))) ?></strong>
+                    <span>au <?= esc(date('d/m/Y', strtotime((string) $demande['date_fin']))) ?></span>
+                  </div>
+                </td>
+                <td><?= esc(number_format((float) $demande['nb_jours'], 1, ',', ' ')) ?></td>
+                <td class="motif-cell">
+                  <?= esc($demande['motif'] ?: 'Aucun motif renseigné') ?>
+                </td>
+                <td>
+                  <?= esc(! empty($demande['created_at']) ? date('d/m/Y H:i', strtotime((string) $demande['created_at'])) : '—') ?>
+                </td>
+                <td>
+                  <span class="status-badge status-pending">En attente</span>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <?php else: ?>
+    <div class="empty-state">
+      <div class="empty-icon"><i class="bi bi-inbox"></i></div>
+      <h2>Aucune demande en attente</h2>
+      <p>Les nouvelles demandes apparaîtront ici dès qu’un employé en soumettra une.</p>
+    </div>
+  <?php endif; ?>
+</section>
+
+<?= $this->endSection() ?>
