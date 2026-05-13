@@ -1,0 +1,321 @@
+ERROR - 2026-05-13 06:38:39 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in /home/mihaja/Documents/SI/TechMada/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/MySQLi/Connection.php(201): mysqli->real_connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in /home/mihaja/Documents/SI/TechMada/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#4 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#7 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#9 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#10 {main}
+CRITICAL - 2026-05-13 06:38:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 3 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:40:38 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:40:38 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:40:39 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:40:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:40:39 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:40:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:40:39 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:40:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:40:59 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:40:59 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:43:51 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:43:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:43:51 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:43:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:43:51 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:43:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:43:51 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:43:51 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 06:43:52 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/mihaja/Documents/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/mihaja/Documents/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/mihaja/Documents/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/mihaja/Documents/SI/TechMada/app/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+#6 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/mihaja/Documents/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/mihaja/Documents/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/mihaja/Documents/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/mihaja/Documents/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:43:52 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: GET, Route: employee/demande]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/CongeController.php(18): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CongeController->demande()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
