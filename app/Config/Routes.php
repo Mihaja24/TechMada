@@ -8,8 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Auth::login');
 $routes->match(['get', 'post'], 'login', 'Auth::login');
 $routes->get('logout', 'Auth::logout');
-<<<<<<< Updated upstream
-=======
 
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
 	$routes->get('/', 'Admin::index');
@@ -28,4 +26,3 @@ $routes->group('rh', ['filter' => 'auth:rh|admin'], static function ($routes) {
 
 $routes->get('liste-rh', 'Rh::demandes', ['filter' => 'auth:rh|admin']);
 $routes->get('soldes', 'Rh::employes', ['filter' => 'auth:rh|admin']);
->>>>>>> Stashed changes
