@@ -155,19 +155,14 @@ class Admin extends BaseController
             return redirect()->to(site_url('admin/employes'))->with('error', 'Méthode non autorisée.');
         }
 
-        $db = \Config\Database::connect();
-        $employe = $db->table('employes')->where('id', $id)->get()->getRowArray();
+        $employeModel = new EmployeModel();
+        $employe = $employeModel->findById($id);
 
         if (! $employe) {
             return redirect()->to(site_url('admin/employes'))->with('error', 'Employé introuvable.');
         }
 
-        $db->table('employes')
-            ->where('id', $id)
-            ->update([
-                'actif' => 0,
-                'updated_at' => date('Y-m-d H:i:s'),
-            ]);
+        $employeModel->deactivate($id);
 
         return redirect()->to(site_url('admin/employes'))->with('success', 'Employé désactivé.');
     }

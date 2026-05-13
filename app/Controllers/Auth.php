@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\EmployeModel;
+
 class Auth extends BaseController
 {
     public function login()
@@ -21,24 +23,23 @@ class Auth extends BaseController
             $email = trim((string) $this->request->getPost('email'));
             $password = (string) $this->request->getPost('password');
 
-            $db = \Config\Database::connect();
-            $builder = $db->table('employes');
-            $user = $builder->where('email', $email)->where('actif', 1)->get()->getRow();
+            $employeModel = new EmployeModel();
+            $user = $employeModel->findByEmailForLogin($email);
 
             if (! $user) {
                 return redirect()->back()->withInput()->with('error', 'Email ou mot de passe invalide.');
             }
 
-            $hash = $user->password_hash ?? ($user->password ?? null);
+            $hash = $user['password_hash'] ?? ($user['password'] ?? null);
             if (! $hash || ! password_verify($password, $hash)) {
                 return redirect()->back()->withInput()->with('error', 'Email ou mot de passe invalide.');
             }
 
             $sess = session();
             $sess->set([
-                'user_id'    => $user->id ?? null,
-                'email'      => $user->email,
-                'role'       => $user->role ?? null,
+                'user_id'    => $user['id'] ?? null,
+                'email'      => $user['email'],
+                'role'       => $user['role'] ?? null,
                 'isLoggedIn' => true,
             ]);
 
