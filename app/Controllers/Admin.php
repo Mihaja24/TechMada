@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\DepartementModel;
+use App\Models\EmployeModel;
+
 class Admin extends BaseController
 {
     public function index()
@@ -13,33 +16,13 @@ class Admin extends BaseController
     {
         helper(['form', 'url']);
 
-        $db = \Config\Database::connect();
+        $departementModel = new DepartementModel();
+        $employeModel = new EmployeModel();
+        
         $editId = trim((string) $this->request->getGet('edit'));
 
-        $departements = $db->table('departements')
-            ->select('id, nom')
-            ->orderBy('nom', 'ASC')
-            ->get()
-            ->getResultArray();
-
-        $employes = $db->table('employes e')
-            ->select([
-                'e.id',
-                'e.nom',
-                'e.prenom',
-                'e.email',
-                'e.role',
-                'e.actif',
-                'e.date_embauche',
-                'd.nom AS departement_nom',
-                'd.id AS departement_id',
-            ])
-            ->join('departements d', 'd.id = e.departement_id', 'left')
-            ->orderBy('e.actif', 'DESC')
-            ->orderBy('e.prenom', 'ASC')
-            ->orderBy('e.nom', 'ASC')
-            ->get()
-            ->getResultArray();
+        $departements = $departementModel->getAllOrdered();
+        $employes = $employeModel->getAllWithDepartement();
 
         $selectedEmploye = [
             'id' => '',
@@ -69,15 +52,9 @@ class Admin extends BaseController
             }
         }
 
-        $activeCount = 0;
-        $inactiveCount = 0;
-        foreach ($employes as $employe) {
-            if ((int) $employe['actif'] === 1) {
-                $activeCount++;
-            } else {
-                $inactiveCount++;
-            }
-        }
+        $counts = $employeModel->getActiveInactiveCounts();
+        $activeCount = $counts['active'];
+        $inactiveCount = $counts['inactive'];
 
         return view('admin/employes', [
             'title' => 'Admin - Employés',
@@ -92,7 +69,7 @@ class Admin extends BaseController
             ],
             'activeCount' => $activeCount,
             'inactiveCount' => $inactiveCount,
-            'totalCount' => count($employes),
+            'totalCount' => $counts['total'],
         ]);
     }
 
@@ -129,16 +106,13 @@ class Admin extends BaseController
                 ->with('error', 'Veuillez corriger les informations du formulaire.');
         }
 
-        $db = \Config\Database::connect();
+        $employeModel = new EmployeModel();
 
         $email = trim((string) $this->request->getPost('email'));
         $departementId = (int) $this->request->getPost('departement_id');
         $dateEmbauche = (string) $this->request->getPost('date_embauche');
 
-        $existingByEmail = $db->table('employes')
-            ->where('email', $email)
-            ->get()
-            ->getRowArray();
+        $existingByEmail = $employeModel->findByEmail($email);
 
         if ($existingByEmail && (! $isEdit || (int) $existingByEmail['id'] !== (int) $id)) {
             return redirect()->to(site_url('admin/employes' . ($isEdit ? '?edit=' . $id : '')))
@@ -161,7 +135,7 @@ class Admin extends BaseController
             $data['actif'] = 1;
             $data['created_at'] = date('Y-m-d H:i:s');
 
-            $db->table('employes')->insert($data);
+            $employeModel->insert($data);
 
             return redirect()->to(site_url('admin/employes'))->with('success', 'Employé créé avec succès.');
         }
@@ -170,9 +144,7 @@ class Admin extends BaseController
             $data['password'] = password_hash($password, PASSWORD_BCRYPT);
         }
 
-        $db->table('employes')
-            ->where('id', (int) $id)
-            ->update($data);
+        $employeModel->update((int) $id, $data);
 
         return redirect()->to(site_url('admin/employes?edit=' . $id))->with('success', 'Employé mis à jour avec succès.');
     }
