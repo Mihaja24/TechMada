@@ -123,4 +123,75 @@ class CongeController extends BaseController
 
         return view('employee/demande', $data);
     }
+
+    public function mes_demandes()
+    {
+        $db = Database::connect();
+        $session = service('session');
+        $employeId = $session->get('employe_id') ?? 1;
+
+        // Pagination
+        $perPage = 10;
+        $page = $this->request->getGet('page') ?? 1;
+        $offset = ($page - 1) * $perPage;
+
+        // Get total count
+        $total = $db->table('conges')
+            ->where('employe_id', $employeId)
+            ->countAllResults();
+
+        // Get demands with pagination
+        $conges = $db->table('conges')
+            ->select('conges.*, types_conge.libelle as type_conge_libelle')
+            ->join('types_conge', 'types_conge.id = conges.type_conge_id')
+            ->where('conges.employe_id', $employeId)
+            ->orderBy('conges.created_at', 'DESC')
+            ->limit($perPage, $offset)
+            ->get()
+            ->getResultArray();
+
+        $data = [
+            'conges' => $conges,
+            'pagination' => [
+                'current' => $page,
+                'total' => ceil($total / $perPage),
+                'per_page' => $perPage,
+                'total_items' => $total,
+            ],
+        ];
+
+        return view('employee/mes_demandes', $data);
+    }
+
+    public function annuler($id)
+    {
+        $db = Database::connect();
+        $session = service('session');
+        $employeId = $session->get('employe_id') ?? 1;
+
+        if ($this->request->getMethod() === 'post') {
+            // Verify the demand belongs to the employee and is in en_attente status
+            $conge = $db->table('conges')
+                ->where('id', $id)
+                ->where('employe_id', $employeId)
+                ->where('statut', 'en_attente')
+                ->get()
+                ->getRowArray();
+
+            if ($conge) {
+                $db->table('conges')
+                    ->where('id', $id)
+                    ->update([
+                        'statut' => 'annulee',
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+
+                $session->setFlashdata('success', 'Votre demande de congé a été annulée.');
+            } else {
+                $session->setFlashdata('error', 'Impossible d\'annuler cette demande. Elle n\'existe pas, ne vous appartient pas, ou n\'est plus en attente.');
+            }
+        }
+
+        return redirect()->to('/employee/mes_demandes');
+    }
 }

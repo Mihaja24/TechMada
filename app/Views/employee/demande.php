@@ -23,6 +23,9 @@
                 <strong>Astuce :</strong>
                 Veillez à vérifier les dates et le type de congé avant de soumettre.
             </div>
+            <div class="auth-left-text">
+                <a href="/employee/mes_demandes" class="btn-link">→ Voir mes demandes</a>
+            </div>
         </div>
 
         <div class="auth-right">
@@ -77,6 +80,7 @@
 
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">Envoyer la demande</button>
+                        <a href="/employee/mes_demandes" class="btn-secondary">Voir mes demandes</a>
                     </div>
                 </form>
             </div>

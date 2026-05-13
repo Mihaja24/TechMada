@@ -47,9 +47,11 @@ a{color:inherit;text-decoration:none}
 .f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--forest);outline:none;box-shadow:0 0 0 3px rgba(45,90,61,.1)}
 .f-select{appearance:none;cursor:pointer}
 .f-textarea{min-height:120px;resize:vertical}
-.form-actions{margin-top:1.25rem}
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;width:100%;background:var(--forest);color:var(--white);border:none;border-radius:12px;padding:14px 18px;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .15s}
+.form-actions{margin-top:1.25rem;display:flex;gap:1rem}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;flex:1;background:var(--forest);color:var(--white);border:none;border-radius:12px;padding:14px 18px;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .15s}
 .btn-primary:hover{background:var(--forest2)}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;flex:1;background:var(--white);color:var(--forest);border:1.5px solid var(--forest);border-radius:12px;padding:14px 18px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .15s;text-decoration:none}
+.btn-secondary:hover{background:var(--mint)}
 .flash{display:flex;align-items:center;gap:.75rem;padding:14px 16px;border-radius:12px;font-size:.92rem;margin-bottom:1rem;border:1px solid transparent}
 .flash-success{background:var(--success-bg);color:var(--success);border-color:var(--success-br)}
 .flash-error{background:var(--danger-bg);color:var(--danger);border-color:var(--danger-br)}
