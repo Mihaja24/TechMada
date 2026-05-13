@@ -49,4 +49,15 @@ class Auth extends BaseController
             'title' => 'Connexion',
         ]);
     }
+
+    /**
+     * Logout the current user and destroy session
+     */
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+
+        return redirect()->to(site_url('login'))->with('success', 'Vous avez été déconnecté.');
+    }
 }
