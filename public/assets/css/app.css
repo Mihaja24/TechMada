@@ -1,0 +1,162 @@
+:root {
+    --ink: #1c2b24;
+    --muted: #6b786f;
+    --bg: #f6f8f7;
+    --forest: #2e6958
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: Manrope, system-ui, Arial, sans-serif;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink)
+}
+
+.app-wrap {
+    display: flex;
+    min-height: 100vh
+}
+
+.sidebar {
+    width: 240px;
+    background: #0e1a16;
+    color: #fff;
+    display: flex;
+    flex-direction: column
+}
+
+.sidebar-brand {
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, .04)
+}
+
+.sidebar-logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--forest);
+    display: grid;
+    place-items: center
+}
+
+.sidebar-brand-name {
+    font-weight: 700
+}
+
+.sidebar-brand-name span {
+    display: block;
+    font-size: .72rem;
+    color: rgba(255, 255, 255, .6);
+    font-weight: 400
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 12px 8px;
+    margin: 0;
+    flex: 1
+}
+
+.sidebar-nav li {
+    margin: 6px 0
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, .9);
+    text-decoration: none
+}
+
+.sidebar-nav a:hover {
+    background: rgba(255, 255, 255, .03)
+}
+
+.sidebar-user {
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, .04)
+}
+
+.s-user-row {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #2e6958;
+    display: grid;
+    place-items: center;
+    font-weight: 700
+}
+
+.user-name {
+    font-weight: 700
+}
+
+.user-role {
+    font-size: .78rem;
+    color: var(--muted)
+}
+
+.logout-link {
+    margin-left: auto;
+    color: rgba(255, 255, 255, .6);
+    text-decoration: none
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column
+}
+
+.topbar {
+    height: 62px;
+    background: #fff;
+    border-bottom: 1px solid #e6ece8;
+    display: flex;
+    align-items: center;
+    padding: 0 20px
+}
+
+.topbar-title {
+    font-weight: 700
+}
+
+.content {
+    padding: 20px;
+    flex: 1;
+    background: linear-gradient(180deg, #fff, #fbfcfb)
+}
+
+.footer-app {
+    padding: 12px 20px;
+    background: #fff;
+    border-top: 1px solid #e6ece8;
+    font-size: .9rem;
+    color: var(--muted)
+}
+
+@media(max-width:800px) {
+    .sidebar {
+        display: none
+    }
+
+    .app-wrap {
+        flex-direction: column
+    }
+}
