@@ -9,6 +9,13 @@ $routes->get('/', 'Auth::login');
 $routes->match(['get', 'post'], 'login', 'Auth::login');
 $routes->get('logout', 'Auth::logout');
 
+$routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
+	$routes->get('/', 'Admin::index');
+	$routes->get('employes', 'Admin::employes');
+	$routes->post('employes/save', 'Admin::saveEmploye');
+	$routes->post('employes/desactiver/(:num)', 'Admin::deactivate/$1');
+});
+
 $routes->group('rh', ['filter' => 'auth:rh|admin'], static function ($routes) {
 	$routes->get('/', 'Rh::index');
 	$routes->get('demandes', 'Rh::demandes');
