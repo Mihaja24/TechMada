@@ -34,3 +34,11 @@ INSERT INTO conges (employe_id, type_conge_id, date_debut, date_fin, nb_jours, m
 (3, 1, '2026-05-18', '2026-05-20', 3, 'Congé personnel pour formalités administratives', 'en_attente', NULL, NULL),
 (3, 2, '2026-05-28', '2026-05-29', 2, 'Repos médical recommandé', 'en_attente', NULL, NULL),
 (2, 1, '2026-06-02', '2026-06-05', 4, 'Participation à une formation interne', 'en_attente', NULL, NULL);
+
+-- Soldes de test pour permettre l'approbation RH
+DELETE FROM soldes;
+
+INSERT INTO soldes (employe_id, type_conge_id, annee, jours_attribues, jours_pris) VALUES
+(3, 1, 2026, 20, 0),
+(3, 2, 2026, 10, 0),
+(2, 1, 2026, 20, 0);

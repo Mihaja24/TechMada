@@ -61,6 +61,14 @@
       </header>
 
       <main class="content">
+        <?php if ($flashSuccess = session()->getFlashdata('success')): ?>
+          <div class="app-alert app-alert-success"><?= esc($flashSuccess) ?></div>
+        <?php endif; ?>
+
+        <?php if ($flashError = session()->getFlashdata('error')): ?>
+          <div class="app-alert app-alert-error"><?= esc($flashError) ?></div>
+        <?php endif; ?>
+
         <?= $this->renderSection('content') ?>
       </main>
 

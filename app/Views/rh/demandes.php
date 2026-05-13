@@ -34,6 +34,7 @@
               <th>Motif</th>
               <th>Demandée le</th>
               <th>Statut</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -67,6 +68,30 @@
                 </td>
                 <td>
                   <span class="status-badge status-pending">En attente</span>
+                </td>
+                <td>
+                  <form method="post" action="<?= site_url('rh/approuver/' . $demande['id']) ?>" class="inline-action-form">
+                    <?= csrf_field() ?>
+                    <button type="submit" class="action-btn action-btn-approve" onclick="return confirm('Approuver cette demande ?')">
+                      <i class="bi bi-check2-circle"></i>
+                      Approuver
+                    </button>
+                  </form>
+                  <details class="refusal-panel">
+                    <summary class="action-btn action-btn-refuse">
+                      <i class="bi bi-x-circle"></i>
+                      Refuser
+                    </summary>
+                    <form method="post" action="<?= site_url('rh/refuser/' . $demande['id']) ?>" class="refusal-form">
+                      <?= csrf_field() ?>
+                      <label for="commentaire_rh_<?= esc($demande['id']) ?>">Commentaire RH</label>
+                      <textarea id="commentaire_rh_<?= esc($demande['id']) ?>" name="commentaire_rh" rows="3" placeholder="Commentaire optionnel"></textarea>
+                      <button type="submit" class="action-btn action-btn-refuse-submit" onclick="return confirm('Refuser cette demande ?')">
+                        <i class="bi bi-send-x"></i>
+                        Confirmer le refus
+                      </button>
+                    </form>
+                  </details>
                 </td>
               </tr>
             <?php endforeach; ?>
