@@ -143,8 +143,6 @@ body {
     background: linear-gradient(180deg, #fff, #fbfcfb)
 }
 
-<<<<<<< Updated upstream
-=======
 .app-alert {
     padding: 14px 16px;
     border-radius: 14px;
@@ -712,7 +710,6 @@ body {
     color: var(--muted)
 }
 
->>>>>>> Stashed changes
 .footer-app {
     padding: 12px 20px;
     background: #fff;
@@ -729,8 +726,6 @@ body {
     .app-wrap {
         flex-direction: column
     }
-<<<<<<< Updated upstream
-=======
 
     .page-kpi {
         text-align: left
@@ -739,7 +734,6 @@ body {
     .rh-filters {
         grid-template-columns: 1fr
     }
-
     .admin-grid,
     .admin-stats,
     .form-grid {
@@ -749,5 +743,5 @@ body {
     .form-field-wide {
         grid-column: auto
     }
->>>>>>> Stashed changes
+
 }

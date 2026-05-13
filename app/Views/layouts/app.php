@@ -29,8 +29,8 @@
           <li><a href="<?= site_url('admin/types') ?>"><i class="bi bi-tags"></i> Types de congé</a></li>
         <?php elseif ($role === 'rh'): ?>
           <li><a href="<?= site_url('rh') ?>"><i class="bi bi-grid-1x2"></i> Tableau de bord</a></li>
-          <li><a href="<?= site_url('liste-rh') ?>"><i class="bi bi-inbox"></i> Demandes à traiter</a></li>
-          <li><a href="<?= site_url('soldes') ?>"><i class="bi bi-people"></i> Soldes employés</a></li>
+          <li><a href="<?= site_url('rh/demandes') ?>"><i class="bi bi-inbox"></i> Demandes à traiter</a></li>
+          <li><a href="<?= site_url('rh/employes') ?>"><i class="bi bi-people"></i> Soldes employés</a></li>
           <li><a href="<?= site_url('historique') ?>"><i class="bi bi-archive"></i> Historique</a></li>
         <?php else: ?>
           <li><a href="<?= site_url('/') ?>"><i class="bi bi-grid-1x2"></i> Tableau de bord</a></li>
@@ -61,6 +61,14 @@
       </header>
 
       <main class="content">
+        <?php if ($flashSuccess = session()->getFlashdata('success')): ?>
+          <div class="app-alert app-alert-success"><?= esc($flashSuccess) ?></div>
+        <?php endif; ?>
+
+        <?php if ($flashError = session()->getFlashdata('error')): ?>
+          <div class="app-alert app-alert-error"><?= esc($flashError) ?></div>
+        <?php endif; ?>
+
         <?= $this->renderSection('content') ?>
       </main>
 
