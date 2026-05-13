@@ -13,6 +13,14 @@ class Rh extends BaseController
     {
         $db = \Config\Database::connect();
 
+        $departementId = trim((string) $this->request->getGet('departement_id'));
+        $statut = trim((string) $this->request->getGet('statut'));
+        $allowedStatuses = ['en_attente', 'approuvee', 'refusee'];
+
+        if ($statut === '' || ! in_array($statut, $allowedStatuses, true)) {
+            $statut = 'en_attente';
+        }
+
         $builder = $db->table('conges c');
         $builder->select([
             'c.id',
@@ -31,16 +39,122 @@ class Rh extends BaseController
         $builder->join('employes e', 'e.id = c.employe_id', 'left');
         $builder->join('departements d', 'd.id = e.departement_id', 'left');
         $builder->join('types_conge t', 't.id = c.type_conge_id', 'left');
-        $builder->where('c.statut', 'en_attente');
+
+        if ($statut !== '') {
+            $builder->where('c.statut', $statut);
+        }
+
+        if ($departementId !== '' && ctype_digit($departementId)) {
+            $builder->where('e.departement_id', (int) $departementId);
+        }
+
         $builder->orderBy('c.date_debut', 'ASC');
         $builder->orderBy('c.created_at', 'ASC');
 
         $demandes = $builder->get()->getResultArray();
 
+        $departements = $db->table('departements')
+            ->select('id, nom')
+            ->orderBy('nom', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $selectedDepartementNom = 'Tous';
+        if ($departementId !== '' && ctype_digit($departementId)) {
+            foreach ($departements as $departement) {
+                if ((string) $departement['id'] === $departementId) {
+                    $selectedDepartementNom = (string) $departement['nom'];
+                    break;
+                }
+            }
+        }
+
         return view('rh/demandes', [
-            'title' => 'Espace RH - Demandes en attente',
+            'title' => 'Espace RH - Demandes',
             'demandes' => $demandes,
             'totalDemandes' => count($demandes),
+            'departements' => $departements,
+            'selectedDepartementId' => $departementId !== '' && ctype_digit($departementId) ? (int) $departementId : '',
+            'selectedDepartementNom' => $selectedDepartementNom,
+            'selectedStatut' => $statut,
+            'selectedStatutLabel' => [
+                'en_attente' => 'En attente',
+                'approuvee' => 'Approuvée',
+                'refusee' => 'Refusée',
+            ][$statut] ?? ucfirst($statut),
+            'statusOptions' => [
+                'en_attente' => 'En attente',
+                'approuvee' => 'Approuvée',
+                'refusee' => 'Refusée',
+            ],
+        ]);
+    }
+
+    public function employes()
+    {
+        $db = \Config\Database::connect();
+
+        $annee = trim((string) $this->request->getGet('annee'));
+        if ($annee === '' || ! ctype_digit($annee)) {
+            $annee = (string) date('Y');
+        }
+
+        $typesConge = $db->table('types_conge')
+            ->select('id, libelle, jours_annuels, deductible')
+            ->orderBy('id', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $rows = $db->table('employes e')
+            ->select([
+                'e.id AS employe_id',
+                'e.nom AS employe_nom',
+                'e.prenom AS employe_prenom',
+                'e.email AS employe_email',
+                'e.role',
+                'e.actif',
+                'd.nom AS departement_nom',
+                's.type_conge_id',
+                's.jours_attribues',
+                's.jours_pris',
+            ])
+            ->join('departements d', 'd.id = e.departement_id', 'left')
+            ->join('soldes s', 's.employe_id = e.id AND s.annee = ' . $db->escape((int) $annee), 'left', false)
+            ->orderBy('e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $employes = [];
+        foreach ($rows as $row) {
+            $employeId = (int) $row['employe_id'];
+            if (! isset($employes[$employeId])) {
+                $employes[$employeId] = [
+                    'id' => $employeId,
+                    'nom_complet' => trim((string) $row['employe_prenom'] . ' ' . (string) $row['employe_nom']),
+                    'email' => (string) $row['employe_email'],
+                    'role' => (string) $row['role'],
+                    'actif' => (int) $row['actif'],
+                    'departement_nom' => (string) ($row['departement_nom'] ?? 'Non défini'),
+                    'soldes' => [],
+                ];
+            }
+
+            if (! empty($row['type_conge_id'])) {
+                $typeCongeId = (int) $row['type_conge_id'];
+                $employes[$employeId]['soldes'][$typeCongeId] = [
+                    'jours_attribues' => (float) ($row['jours_attribues'] ?? 0),
+                    'jours_pris' => (float) ($row['jours_pris'] ?? 0),
+                ];
+            }
+        }
+
+        return view('rh/employes', [
+            'title' => 'Espace RH - Soldes employés',
+            'annee' => (int) $annee,
+            'typesConge' => $typesConge,
+            'employes' => array_values($employes),
+            'totalEmployes' => count($employes),
         ]);
     }
 

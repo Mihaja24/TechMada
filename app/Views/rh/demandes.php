@@ -6,8 +6,8 @@
   <div class="page-head">
     <div>
       <p class="eyebrow">Espace RH</p>
-      <h1>Demandes en attente</h1>
-      <p class="page-subtitle">Vue de toutes les demandes en attente de validation, triées par date de début.</p>
+      <h1>Demandes</h1>
+      <p class="page-subtitle">Vue des demandes RH, triées par date de début et filtrables par département ou statut.</p>
     </div>
     <div class="page-kpi">
       <span class="kpi-value"><?= esc($totalDemandes ?? 0) ?></span>
@@ -15,10 +15,43 @@
     </div>
   </div>
 
+  <div class="table-card filters-card">
+    <form method="get" action="<?= site_url('rh/demandes') ?>" class="rh-filters">
+      <div class="filter-field">
+        <label for="departement_id">Département</label>
+        <select id="departement_id" name="departement_id">
+          <option value="">Tous les départements</option>
+          <?php foreach (($departements ?? []) as $departement): ?>
+            <option value="<?= esc($departement['id']) ?>" <?= (string) ($selectedDepartementId ?? '') === (string) $departement['id'] ? 'selected' : '' ?>>
+              <?= esc($departement['nom']) ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+
+      <div class="filter-field">
+        <label for="statut">Statut</label>
+        <select id="statut" name="statut">
+          <?php foreach (($statusOptions ?? []) as $value => $label): ?>
+            <option value="<?= esc($value) ?>" <?= (string) ($selectedStatut ?? '') === (string) $value ? 'selected' : '' ?>>
+              <?= esc($label) ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+
+      <div class="filter-actions">
+        <button type="submit" class="action-btn action-btn-approve"><i class="bi bi-funnel"></i> Filtrer</button>
+        <a href="<?= site_url('rh/demandes') ?>" class="filter-reset">Réinitialiser</a>
+      </div>
+    </form>
+  </div>
+
   <?php if (! empty($demandes)): ?>
     <div class="table-card">
       <div class="table-meta">
-        <span class="meta-chip meta-chip-soft"><i class="bi bi-funnel"></i> Statut: en attente</span>
+        <span class="meta-chip meta-chip-soft"><i class="bi bi-funnel"></i> Statut: <?= esc($selectedStatutLabel ?? ucfirst((string) $selectedStatut)) ?></span>
+        <span class="meta-chip"><i class="bi bi-building"></i> Département: <?= esc($selectedDepartementNom ?? 'Tous') ?></span>
         <span class="meta-chip"><i class="bi bi-sort-down"></i> Tri: date de début croissante</span>
       </div>
 
@@ -67,31 +100,41 @@
                   <?= esc(! empty($demande['created_at']) ? date('d/m/Y H:i', strtotime((string) $demande['created_at'])) : '—') ?>
                 </td>
                 <td>
-                  <span class="status-badge status-pending">En attente</span>
+                  <?php if (($demande['statut'] ?? '') === 'approuvee'): ?>
+                    <span class="status-badge status-approved">Approuvée</span>
+                  <?php elseif (($demande['statut'] ?? '') === 'refusee'): ?>
+                    <span class="status-badge status-refused">Refusée</span>
+                  <?php else: ?>
+                    <span class="status-badge status-pending">En attente</span>
+                  <?php endif; ?>
                 </td>
                 <td>
-                  <form method="post" action="<?= site_url('rh/approuver/' . $demande['id']) ?>" class="inline-action-form">
-                    <?= csrf_field() ?>
-                    <button type="submit" class="action-btn action-btn-approve" onclick="return confirm('Approuver cette demande ?')">
-                      <i class="bi bi-check2-circle"></i>
-                      Approuver
-                    </button>
-                  </form>
-                  <details class="refusal-panel">
-                    <summary class="action-btn action-btn-refuse">
-                      <i class="bi bi-x-circle"></i>
-                      Refuser
-                    </summary>
-                    <form method="post" action="<?= site_url('rh/refuser/' . $demande['id']) ?>" class="refusal-form">
+                  <?php if (($demande['statut'] ?? '') === 'en_attente'): ?>
+                    <form method="post" action="<?= site_url('rh/approuver/' . $demande['id']) ?>" class="inline-action-form">
                       <?= csrf_field() ?>
-                      <label for="commentaire_rh_<?= esc($demande['id']) ?>">Commentaire RH</label>
-                      <textarea id="commentaire_rh_<?= esc($demande['id']) ?>" name="commentaire_rh" rows="3" placeholder="Commentaire optionnel"></textarea>
-                      <button type="submit" class="action-btn action-btn-refuse-submit" onclick="return confirm('Refuser cette demande ?')">
-                        <i class="bi bi-send-x"></i>
-                        Confirmer le refus
+                      <button type="submit" class="action-btn action-btn-approve" onclick="return confirm('Approuver cette demande ?')">
+                        <i class="bi bi-check2-circle"></i>
+                        Approuver
                       </button>
                     </form>
-                  </details>
+                    <details class="refusal-panel">
+                      <summary class="action-btn action-btn-refuse">
+                        <i class="bi bi-x-circle"></i>
+                        Refuser
+                      </summary>
+                      <form method="post" action="<?= site_url('rh/refuser/' . $demande['id']) ?>" class="refusal-form">
+                        <?= csrf_field() ?>
+                        <label for="commentaire_rh_<?= esc($demande['id']) ?>">Commentaire RH</label>
+                        <textarea id="commentaire_rh_<?= esc($demande['id']) ?>" name="commentaire_rh" rows="3" placeholder="Commentaire optionnel"></textarea>
+                        <button type="submit" class="action-btn action-btn-refuse-submit" onclick="return confirm('Refuser cette demande ?')">
+                          <i class="bi bi-send-x"></i>
+                          Confirmer le refus
+                        </button>
+                      </form>
+                    </details>
+                  <?php else: ?>
+                    <span class="action-muted">Aucune action</span>
+                  <?php endif; ?>
                 </td>
               </tr>
             <?php endforeach; ?>
