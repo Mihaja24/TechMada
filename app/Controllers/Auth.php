@@ -8,7 +8,7 @@ class Auth extends BaseController
     {
         helper(['form', 'url']);
 
-        if ($this->request->getMethod() === 'post') {
+        if (strtolower($this->request->getMethod()) === 'post') {
             $rules = [
                 'email'    => 'required|valid_email',
                 'password' => 'required|min_length[3]',
@@ -22,8 +22,8 @@ class Auth extends BaseController
             $password = (string) $this->request->getPost('password');
 
             $db = \Config\Database::connect();
-            $builder = $db->table('users');
-            $user = $builder->where('email', $email)->get()->getRow();
+            $builder = $db->table('employes');
+            $user = $builder->where('email', $email)->where('actif', 1)->get()->getRow();
 
             if (! $user) {
                 return redirect()->back()->withInput()->with('error', 'Email ou mot de passe invalide.');
@@ -50,9 +50,6 @@ class Auth extends BaseController
         ]);
     }
 
-    /**
-     * Logout the current user and destroy session
-     */
     public function logout()
     {
         $session = session();

@@ -1,0 +1,74 @@
+ERROR - 2026-05-13 06:44:32 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query()
+#4 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#5 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists()
+#6 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Commands/Database/Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest()
+#8 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CLI/SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+#9 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Commands/Database/Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked()
+#10 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CLI/Commands.php(74): CodeIgniter\Commands\Database\Migrate->run()
+#11 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+#12 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Boot.php(442): CodeIgniter\CLI\Console->run()
+#13 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Boot.php(166): CodeIgniter\Boot::runCommand()
+#14 /home/steeve/Documents/BOSS/S4/SI/TechMada/spark(87): CodeIgniter\Boot::bootSpark()
+#15 {main}
+ERROR - 2026-05-13 06:54:24 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/steeve/Documents/BOSS/S4/SI/TechMada/app/Controllers/Auth.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\Auth->login()
+#6 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/steeve/Documents/BOSS/S4/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 06:54:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: POST, Route: login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/Auth.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Auth->login()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ERROR - 2026-05-13 07:03:37 --> Error connecting to the database: Error: Class "SQLite3" not found in /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/SQLite3/Connection.php:111
+Stack trace:
+#0 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(555): CodeIgniter\Database\SQLite3\Connection->connect()
+#1 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+#2 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/steeve/Documents/BOSS/S4/SI/TechMada/app/Controllers/Auth.php(26): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CodeIgniter.php(951): App\Controllers\Auth->login()
+#6 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+#7 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+#8 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /home/steeve/Documents/BOSS/S4/SI/TechMada/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#10 /home/steeve/Documents/BOSS/S4/SI/TechMada/public/index.php(59): CodeIgniter\Boot::bootWeb()
+#11 {main}
+CRITICAL - 2026-05-13 07:03:37 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+[Method: POST, Route: login]
+in SYSTEMPATH/Database/BaseConnection.php on line 606.
+ 1 SYSTEMPATH/Database/SQLite3/Connection.php(74): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH/Database/BaseConnection.php(795): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 APPPATH/Controllers/Auth.php(26): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Auth->login()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
